@@ -1,0 +1,50 @@
+{
+  "//": "Pin uBO here. Bump 'ref' to a newer uAssets tag/commit to refresh from a newer uBO.",
+
+  "uassets": {
+    "repo": "uBlockOrigin/uAssets",
+    "ref": "master",
+    "baseUrl": "https://raw.githubusercontent.com/uBlockOrigin/uAssets/{ref}/",
+
+    "//lists": "Which uBO lists feed the static bundle. 'ruleset' groups network output into named DNR ruleset files; 'enabledByDefault:false' ships that ruleset disabled (costs 0 against the 30k static budget until toggled). Cosmetic + ##+js() rules from every list are merged regardless of ruleset grouping.",
+    "lists": [
+      { "id": "ubo-filters",       "path": "filters/filters.txt",         "ruleset": "default",  "enabledByDefault": true },
+      { "id": "ubo-filters-general","path": "filters/filters-general.txt", "ruleset": "default",  "enabledByDefault": true },
+      { "id": "ubo-filters-2020",  "path": "filters/filters-2020.txt",    "ruleset": "default",  "enabledByDefault": true },
+      { "id": "ubo-filters-2021",  "path": "filters/filters-2021.txt",    "ruleset": "default",  "enabledByDefault": true },
+      { "id": "ubo-filters-2022",  "path": "filters/filters-2022.txt",    "ruleset": "default",  "enabledByDefault": true },
+      { "id": "ubo-filters-2023",  "path": "filters/filters-2023.txt",    "ruleset": "default",  "enabledByDefault": true },
+      { "id": "ubo-filters-2024",  "path": "filters/filters-2024.txt",    "ruleset": "default",  "enabledByDefault": true },
+      { "id": "ubo-filters-2025",  "path": "filters/filters-2025.txt",    "ruleset": "default",  "enabledByDefault": true },
+      { "id": "ubo-filters-2026",  "path": "filters/filters-2026.txt",    "ruleset": "default",  "enabledByDefault": true },
+      { "id": "ubo-quick-fixes",   "path": "filters/quick-fixes.txt",     "ruleset": "default",  "enabledByDefault": true },
+      { "id": "ubo-unbreak",       "path": "filters/unbreak.txt",         "ruleset": "default",  "enabledByDefault": true },
+      { "id": "ubo-resource-abuse","path": "filters/resource-abuse.txt",  "ruleset": "default",  "enabledByDefault": true },
+      { "id": "ubo-badware",       "path": "filters/badware.txt",         "ruleset": "badware",  "enabledByDefault": true },
+      { "id": "ubo-privacy",       "path": "filters/privacy.txt",         "ruleset": "privacy",  "enabledByDefault": true },
+      { "id": "ubo-privacy-removeparam", "path": "filters/privacy-removeparam.txt", "ruleset": "privacy", "enabledByDefault": true },
+      { "id": "easylist",          "path": "thirdparties/easylist/easylist.txt",      "ruleset": "easylist",    "enabledByDefault": true },
+      { "id": "easyprivacy",       "path": "thirdparties/easylist/easyprivacy.txt",   "ruleset": "easyprivacy", "enabledByDefault": true },
+      { "id": "ubo-cookies",       "path": "filters/annoyances-cookies.txt",          "ruleset": "cookies",     "enabledByDefault": false },
+      { "id": "easylist-cookies",  "path": "thirdparties/easylist/easylist-cookies.txt", "ruleset": "cookies",  "enabledByDefault": false }
+    ]
+  },
+
+  "network": {
+    "//": "'tsurlfilter' uses @adguard/tsurlfilter (auto-falls-back to the built-in basic converter if the API is unresolved); 'basic' forces the built-in converter.",
+    "converter": "tsurlfilter"
+  },
+
+  "budget": {
+    "//": "MV3 static-rule budget (DATA_SOURCES §4.1.1). maxEnabledStaticRules is the guaranteed floor; more may be available via getAvailableStaticRuleCount() at runtime. maxRulesPerRuleset keeps individual files reasonable; the tool splits a ruleset into ruleset-N parts as needed.",
+    "maxEnabledStaticRules": 30000,
+    "maxRulesPerRuleset": 30000,
+    "maxRegexRules": 1000
+  },
+
+  "output": {
+    "dir": "dist",
+    "//": "Neutral output. You re-partition / rename / restyle per build.",
+    "prettyJson": false
+  }
+}

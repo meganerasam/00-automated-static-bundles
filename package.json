@@ -1,0 +1,18 @@
+{
+  "name": "automated-static-bundle",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Regenerate an extension's static files (DNR rulesets, scriptlet DB + library, cosmetics, surrogates) from the latest uBlock Origin via AdGuard tooling.",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build": "node src/index.js",
+    "clean": "node -e \"import('node:fs').then(fs=>fs.rmSync('dist',{recursive:true,force:true}))\""
+  },
+  "dependencies": {
+    "@adguard/tsurlfilter": "^3.5.2",
+    "@adguard/scriptlets": "^2.5.1"
+  }
+}
